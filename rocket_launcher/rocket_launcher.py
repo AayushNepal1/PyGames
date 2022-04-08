@@ -23,7 +23,7 @@ class RocketLauncher:
         """Start the main loop for the game"""
         while True:  
             self.check_events()
-
+            self.rocket.update()
             self.update_events()
             
     def check_events(self):
@@ -31,7 +31,34 @@ class RocketLauncher:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                  sys.exit()
-            
+                self.KeyDOWN(event)
+                self.KeyUP(event)
+                
+    def KeyDOWN(self, event):
+        if event.type == pygame.KEYDOWN:
+                    # Move the rocket to the right
+                    if event.key == pygame.K_RIGHT:
+                        self.rocket.move_right = True
+                    elif event.key == pygame.K_LEFT:
+                        self.rocket.move_left = True
+                    elif event.key == pygame.K_UP:
+                        self.rocket.move_down = True
+                    elif event.key == pygame.K_DOWN:
+                        self.rocket.move_up = True
+    
+    
+    def KeyUP(self, event):
+        if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.rocket.move_right = False
+                    elif event.key == pygame.K_LEFT:
+                        self.rocket.move_left = False
+                    elif event.key == pygame.K_UP:
+                        self.rocket.move_down = False
+                    elif event.key == pygame.K_DOWN:
+                        self.rocket.move_up = False
+
+    
     def update_events(self):
         # Redraw the screen during each pass through the loop.
             self.screen.fill(self.settings.bg_color)

@@ -7,3 +7,5 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (235, 237, 238)
     
+        # Rocket Speed
+        self.speed = 1.5
